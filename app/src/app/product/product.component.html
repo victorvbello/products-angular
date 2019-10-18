@@ -1,0 +1,6 @@
+<p>product works!</p>
+<div *ngIf="product">
+  <h2>{{product.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{product.id}}</div>
+  <button (click)="goBack()">go back</button>
+</div>
