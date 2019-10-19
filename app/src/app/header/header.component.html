@@ -1,0 +1,4 @@
+<div>{{currentUser.name}}</div>
+<div *ngIf="isUserLogin || currentUser.name">
+  <a (click)="logout()">Logout</a>
+</div>
