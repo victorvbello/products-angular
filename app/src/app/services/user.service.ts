@@ -11,13 +11,14 @@ export class UserService {
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().onAuthStateChanged(authData => {
+      firebase.auth().onAuthStateChanged(async authData => {
         const user = new User();
         if (authData) {
           user.avatar = authData.providerData[0].photoURL;
           user.name = authData.providerData[0].displayName;
           user.email = authData.providerData[0].email;
           user.provider = authData.providerData[0].providerId;
+          user.token = await authData.getIdToken(true);
           resolve(user);
         } else {
           reject("No user logged in");
