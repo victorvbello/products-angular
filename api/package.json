@@ -2,10 +2,47 @@
   "name": "api",
   "version": "1.0.0",
   "description": "api products",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src -d build --copy-files",
+    "serve": "node build/index.js",
+    "start": "yarn build && yarn serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "yarn lint:eslint . ",
+    "lint:eslint": "eslint .",
+    "lint:eslint:fix": "eslint . --fix"
   },
   "author": "Victor Bello",
-  "license": "ISC"
+  "license": "ISC",
+  "lint-staged": {
+    "*.js": [
+      "yarn lint:eslint:fix",
+      "git add --force"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
+    "@babel/plugin-transform-async-to-generator": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/register": "^7.4.4",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-graphql": "^3.0.3",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "lint-staged": "8.1.5",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2"
+  }
 }
