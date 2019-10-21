@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 
 import { Product } from "../types";
-import { ProductService } from '../services/product.service';
+import { ProductService } from "../services/product.service";
 
 @Component({
   selector: "app-product",
@@ -24,9 +24,10 @@ export class ProductComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id)
-      .subscribe(product => this.product = product);
+    const partNumber = this.route.snapshot.paramMap.get("partNumber");
+    this.productService
+      .getProduct(partNumber)
+      .subscribe(product => (this.product = product));
   }
 
   goBack(): void {

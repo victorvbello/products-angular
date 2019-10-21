@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { from } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
 import { User } from "../types";
@@ -7,10 +8,11 @@ import { User } from "../types";
   providedIn: "root"
 })
 export class UserService {
+
   constructor(public afAuth: AngularFireAuth) {}
 
-  getCurrentUser() {
-    return new Promise<any>((resolve, reject) => {
+  getCurrentUser(){
+    return from(new Promise<any>((resolve, reject) => {
       firebase.auth().onAuthStateChanged(async authData => {
         const user = new User();
         if (authData) {
@@ -24,6 +26,6 @@ export class UserService {
           reject("No user logged in");
         }
       });
-    });
+    }));
   }
 }

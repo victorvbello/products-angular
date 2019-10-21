@@ -41,7 +41,7 @@ export class AuthGuardService implements CanActivate {
     return new Promise(resolve => {
       this.userService
         .getCurrentUser()
-        .then(
+        .subscribe(
           () => this.onUserAuthenticate(currentUrl, resolve),
           () => this.onUserNotAuthenticate(currentUrl, resolve)
         );

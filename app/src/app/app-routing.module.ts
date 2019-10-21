@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent, canActivate: [AuthGuardService] },
   {
-    path: "product/:id",
+    path: "product/:partNumber",
     component: ProductComponent,
     canActivate: [AuthGuardService]
   },

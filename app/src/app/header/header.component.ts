@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   loadUserData() {
-    this.userService.getCurrentUser().then(
+    this.userService.getCurrentUser().subscribe(
       (user: User) => (this.currentUser = user),
       err => {
         console.log("Get current user error", err);

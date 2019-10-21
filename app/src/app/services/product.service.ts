@@ -1,32 +1,46 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Product } from '../types';
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { catchError, map, tap } from "rxjs/operators";
+import { Product } from "../types";
 
-const PRODUCTS: Product [] = [
-  { id: 11, name: 'Dr Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+const httpOptions = {
+  headers: new HttpHeaders({
+    "Content-Type": "application/json",
+    Authorization: "my-auth-token"
+  })
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ProductService {
+  private productsUrl = "http://localhost:3000";
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
+  }
 
   getProducts(): Observable<Product[]> {
-    return of(PRODUCTS);
+    return this.http.get<Product[]>(`${this.productsUrl}/products`, httpOptions).pipe(
+      tap(_ => console.log("fetched products")),
+      catchError(this.handleError("getProducts", []))
+    );
   }
 
-  getProduct(id: Number): Observable<Product> {
-    return  of(PRODUCTS.find(product => product.id === id));
+  getProduct(partNumber: String): Observable<Product> {
+    return this.http
+      .get<Product>(`${this.productsUrl}/product/${partNumber}`, httpOptions)
+      .pipe(
+        tap(_ => console.log("fetched products")),
+        catchError(this.handleError<Product>("getProducts", new Product()))
+      );
   }
+
+  private;
 }
