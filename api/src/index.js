@@ -1,19 +1,25 @@
 import express from 'express';
-import { Error, Info, Log } from './utils/log';
+import cors from 'cors';
+import AuthMiddleware from './middleware/auth';
+import { Error, Info } from './utils/log';
 import ProductDao from './productDao';
 
 const app = express();
 
-app.get('/products', async (req, res) => {
+app.use(cors());
+
+app.get('/products', AuthMiddleware, async (req, res) => {
+  Info('---------------------------------------------------');
   Info('Request - productList', 'init');
   const list = await ProductDao.all();
   res.json(list || []);
 });
 
-app.get('/product/:sku', async (req, res) => {
+app.get('/product/:sku', AuthMiddleware, async (req, res) => {
+  Info('---------------------------------------------------');
   Info('Request - product', 'init');
   const { sku } = req.params;
-  Log('Request - product', 'params', { sku });
+  Info('Request - product', 'params', { sku });
   if (!sku) {
     Error('Request - product', 'invalid sku', { sku });
     res.json({ error: 400, message: 'invalid sku' });
@@ -29,5 +35,5 @@ app.get('/product/:sku', async (req, res) => {
 });
 
 app.listen(3000, () => {
-  Log('Server', 'app listening on port 3000!');
+  Info('Server', 'app listening on port 3000!');
 });
