@@ -2,8 +2,7 @@
   "name": "angular-product-test",
   "version": "1.0.0",
   "engines": {
-    "node": "10.16.0",
-    "yarn": "1.17.0"
+    "node": "10.16.0"
   },
   "description": "product-app",
   "dependencies": {},
@@ -11,13 +10,13 @@
   "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install:api": "cd api && yarn",
-    "install:app": "cd app && yarn",
-    "install:all": "yarn install:api && yarn install:app",
-    "start:api": "cd api && yarn start",
-    "build:app": "cd app && yarn build",
-    "start:all": "yarn build:app && yarn start:api",
-    "start": "yarn install:all && yarn start:all"
+    "install:api": "cd api && npm install",
+    "install:app": "cd app && npm install",
+    "install:all": "npm run install:api && npm run install:app",
+    "start:api": "cd api && npm run start",
+    "build:app": "cd app && npm run build && npm run heroku:start",
+    "start:all": "npm run build:app && npm run start:api",
+    "start": "npm run install:all && npm run start:all"
   },
   "repository": {
     "type": "git",
