@@ -1,8 +1,8 @@
 export default class ProductAttribute {
-  displayable: Boolean;
-  name: String;
-  usage: String;
-  value: String;
+  displayable: boolean;
+  name: string;
+  usage: string;
+  value: string;
   constructor() {
     this.displayable = false;
     this.name = "";

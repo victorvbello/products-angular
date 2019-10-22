@@ -1,11 +1,11 @@
 export default class User {
-  avatar: String;
-  name: String;
-  email: String;
-  provider: String;
-  token: String;
+  avatar: string;
+  name: string;
+  email: string;
+  provider: string;
+  token: string;
 
-  constructor(){
+  constructor() {
     this.avatar = "";
     this.name = "";
     this.email = "";

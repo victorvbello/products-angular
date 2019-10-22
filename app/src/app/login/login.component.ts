@@ -8,7 +8,7 @@ import { AuthService } from "../services/auth/auth.service";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  loginInit: Boolean;
+  loginInit: boolean;
 
   constructor(public authService: AuthService, private router: Router) {
     this.loginInit = false;

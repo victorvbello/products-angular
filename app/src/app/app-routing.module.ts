@@ -19,7 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: { title: "Products List" }
   }
-  //{ path: '**', component: PageNotFoundComponent }
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

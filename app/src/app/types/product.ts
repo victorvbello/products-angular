@@ -3,18 +3,18 @@ import ProductAttribute from "./productAttribute";
 import ProductShipping from "./productShipping";
 
 export default class Product {
-  uniqueID: String;
-  partNumber: String;
-  fullImage: String;
-  images: [String];
-  name: String;
+  uniqueID: string;
+  partNumber: string;
+  fullImage: string;
+  images: [string];
+  name: string;
   prices: ProductPrices;
-  shortDescription: String;
-  longDescription: String;
+  shortDescription: string;
+  longDescription: string;
   attributes: [ProductAttribute];
   shipping: ProductShipping;
-  thumbnailImage: String;
-  manufacture: String;
+  thumbnailImage: string;
+  manufacture: string;
 
   constructor() {
     this.uniqueID = "";

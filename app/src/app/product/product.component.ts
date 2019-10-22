@@ -13,8 +13,8 @@ import { ProductService } from "../services/product.service";
 })
 export class ProductComponent implements OnInit {
   product: Product;
-  quantity: number = 1;
-  selectedImage: number = 0
+  quantity = 1;
+  selectedImage = 0;
 
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
 

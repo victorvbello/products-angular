@@ -10,7 +10,7 @@ import { User } from "../types";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  isUserLogin: Boolean;
+  isUserLogin: boolean;
   currentUser: User;
 
   constructor(
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   }
 
   checkLogin() {
-    this.authService.isUserLogin.subscribe((action: Boolean) => {
+    this.authService.isUserLogin.subscribe((action: boolean) => {
       this.isUserLogin = action;
       this.loadUserData();
     });

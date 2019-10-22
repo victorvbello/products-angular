@@ -1,8 +1,8 @@
 export default class ProductShipping {
-  dDomicilio: Boolean;
-  rTienda: Boolean;
+  dDomicilio: boolean;
+  rTienda: boolean;
 
-  constructor(){
+  constructor() {
     this.dDomicilio = false;
     this.rTienda = false;
   }

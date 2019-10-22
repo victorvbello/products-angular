@@ -36,7 +36,7 @@ export class ProductService {
       );
   }
 
-  getProduct(partNumber: String): Observable<Product> {
+  getProduct(partNumber: string): Observable<Product> {
     return this.http
       .get<Product>(`${this.productsUrl}/product/${partNumber}`, httpOptions)
       .pipe(

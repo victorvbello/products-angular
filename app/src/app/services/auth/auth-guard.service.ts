@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate {
     private router: Router
   ) {}
 
-  onUserAuthenticate(currentUrl: String, resolve: Function) {
+  onUserAuthenticate(currentUrl: string, resolve: (r: boolean) => void) {
     if (currentUrl === "/login") {
       this.router.navigate(["/products"]);
       return resolve(false);
@@ -27,7 +27,7 @@ export class AuthGuardService implements CanActivate {
     }
   }
 
-  onUserNotAuthenticate(currentUrl: String, resolve: Function) {
+  onUserNotAuthenticate(currentUrl: string, resolve: (r: boolean) => void) {
     if (currentUrl === "/login") {
       return resolve(true);
     } else {

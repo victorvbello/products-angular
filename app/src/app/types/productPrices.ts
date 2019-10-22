@@ -1,18 +1,18 @@
 export default class ProductPrices {
-  offerPrice: Number;
-  listPrice: Number;
-  cardPrice: Number;
-  discount: Number;
-  discountPercentage: Number;
-  ripleyPuntos: Number;
+  offerPrice: number;
+  listPrice: number;
+  cardPrice: number;
+  discount: number;
+  discountPercentage: number;
+  ripleyPuntos: number;
   $$cache: {
-    cached: Boolean;
-    created: Number;
+    cached: boolean;
+    created: number;
   };
-  formattedOfferPrice: String;
-  formattedListPrice: String;
-  formattedCardPrice: String;
-  formattedDiscount: String;
+  formattedOfferPrice: string;
+  formattedListPrice: string;
+  formattedCardPrice: string;
+  formattedDiscount: string;
 
   constructor() {
     this.offerPrice = 0;

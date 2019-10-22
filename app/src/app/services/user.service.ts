@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(public afAuth: AngularFireAuth) {}
 
-  getCurrentUser(){
+  getCurrentUser() {
     return from(new Promise<any>((resolve, reject) => {
       firebase.auth().onAuthStateChanged(async authData => {
         const user = new User();
