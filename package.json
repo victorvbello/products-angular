@@ -14,7 +14,7 @@
     "install:app": "cd app && npm install",
     "install:all": "npm run install:api && npm run install:app",
     "start:api": "cd api && npm run start",
-    "build:app": "cd app && npm run build && npm run heroku:start",
+    "build:app": "cd app && npm run heroku:build && npm run heroku:start",
     "start:all": "npm run build:app && npm run start:api",
     "start": "npm run install:all && npm run start:all"
   },
