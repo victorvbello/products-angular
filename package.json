@@ -8,14 +8,14 @@
   "description": "product-app",
   "dependencies": {},
   "devDependencies": {},
-  "main": "app/dist/app/index.html",
+  "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install:api": "cd api && yarn",
     "install:app": "cd app && yarn",
     "install:all": "yarn install:api && yarn install:app",
     "start:api": "cd api && yarn start",
-    "build:app": "cd app && yarn build && yarn heroku:start",
+    "build:app": "cd app && yarn build",
     "start:all": "yarn build:app && yarn start:api",
     "start": "yarn install:all && yarn start:all"
   },
