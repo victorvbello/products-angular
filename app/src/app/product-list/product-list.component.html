@@ -1,6 +1,28 @@
-<p>product-list works!</p>
-<li *ngFor="let product of products">
-    <a routerLink="/product/{{product.partNumber}}">
-      <span>{{product.partNumber}}</span> {{product.name}}
+<app-full-loading *ngIf="!products"></app-full-loading>
+<div class="product-list" *ngIf="products">
+  <div *ngFor="let product of products">
+    <a class="product-link" routerLink="/product/{{product.partNumber}}">
+      <div class="product-item">
+        <div class="offer-box" *ngIf="product.prices.discountPercentage > 0">
+          <div class="percentage-offer">
+              -{{product.prices.discountPercentage}} %
+          </div>
+        </div>
+        <div class="image">
+          <img src="https:{{product.thumbnailImage}}">
+        </div>
+        <div class="detail">
+          <span class="brand">{{product.attributes[0].value}}</span>
+          <span class="name">{{product.name}}</span>
+          <div class="price-offer" *ngIf="product.prices.discountPercentage > 0">
+            <span class="list">{{product.prices.formattedListPrice}}</span>
+            <span class="offer">{{product.prices.formattedOfferPrice}}</span>
+          </div>
+          <div class="price" *ngIf="product.prices.discountPercentage === 0">
+            <span class="list">{{product.prices.formattedListPrice}}</span>
+          </div>
+        </div>
+      </div>
     </a>
-  </li>
+  </div>
+</div>

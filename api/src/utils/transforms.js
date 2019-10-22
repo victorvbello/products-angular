@@ -10,6 +10,9 @@ export const processProduct = data => {
     prices,
     shortDescription,
     longDescription,
+    attributes,
+    shipping,
+    thumbnailImage,
   } = data;
   return {
     uniqueID,
@@ -20,5 +23,8 @@ export const processProduct = data => {
     prices,
     shortDescription,
     longDescription,
+    attributes,
+    shipping,
+    thumbnailImage,
   };
 };

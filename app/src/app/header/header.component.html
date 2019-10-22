@@ -1,4 +1,7 @@
-<div>{{currentUser.name}}</div>
-<div *ngIf="isUserLogin || currentUser.name">
-  <a (click)="logout()">Logout</a>
+<div class="nav-bar">
+  <h1 class="title" >Product App</h1>
+  <i class="user" *ngIf="currentUser.name">User: {{currentUser.name}}</i>
+  <div class="actions">
+    <button (click)="logout()" *ngIf="isUserLogin || currentUser.name" >Logout</button>
+  </div>
 </div>

@@ -8,17 +8,16 @@ import { AuthService } from "../services/auth/auth.service";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  errorMessage: string = "";
+  loginInit: Boolean;
 
-  constructor(
-    public authService: AuthService,
-    private router: Router,
-  ) {
+  constructor(public authService: AuthService, private router: Router) {
+    this.loginInit = false;
   }
 
   ngOnInit() {}
 
   tryGoogleLogin() {
+    this.loginInit = true;
     this.authService.loginGoogle().then(() => {
       this.router.navigate(["/products"]);
     });

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
+import { SwiperConfigInterface, SwiperComponent } from "ngx-swiper-wrapper";
 
 import { Product } from "../types";
 import { ProductService } from "../services/product.service";
@@ -12,12 +13,26 @@ import { ProductService } from "../services/product.service";
 })
 export class ProductComponent implements OnInit {
   product: Product;
+  quantity: number = 1;
+  selectedImage: number = 0
+
+  @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
-    private location: Location
+    private productService: ProductService
   ) {}
+
+  public config: SwiperConfigInterface = {
+    a11y: true,
+    direction: "horizontal",
+    slidesPerView: 1,
+    keyboard: true,
+    mousewheel: true,
+    scrollbar: false,
+    navigation: true,
+    pagination: false
+  };
 
   ngOnInit() {
     this.getProduct();
@@ -30,7 +45,18 @@ export class ProductComponent implements OnInit {
       .subscribe(product => (this.product = product));
   }
 
-  goBack(): void {
-    this.location.back();
+  navSwiper(index: number) {
+    this.selectedImage = index;
+    this.componentRef.directiveRef.setIndex(index);
+  }
+
+  onIndexChange(index: number): void {
+    this.selectedImage = index;
+  }
+
+  changeQuantity(value: number) {
+    console.log(this.product);
+    const result = this.quantity + value;
+    this.quantity = result > 1 ? result : 1;
   }
 }

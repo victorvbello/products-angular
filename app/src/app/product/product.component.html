@@ -1,6 +1,139 @@
-<p>product works!</p>
-<div *ngIf="product">
-  <h2>{{product.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{product.id}}</div>
-  <button (click)="goBack()">go back</button>
+<app-full-loading *ngIf="!product"></app-full-loading>
+<div *ngIf="product" class="product">
+  <div class="header">
+    <div class="thumbnail">
+      <div *ngFor="let img of product.images; let i = index" class="thumbnail-item"
+        [ngClass]="{'active': i === selectedImage}">
+        <a (mouseenter)="navSwiper(i)">
+          <img src="https:{{img}}" alt="" height="50px">
+        </a>
+      </div>
+    </div>
+    <div class="images">
+      <swiper class="swiper-container" [config]="config" [(index)]="index" [disabled]="disabled"
+        (indexChange)="onIndexChange($event)">
+        <div *ngFor="let images of product.images">
+          <img src="https:{{images}}" alt="" class="swiper-images">
+        </div>
+      </swiper>
+    </div>
+    <div class="info">
+      <h2 class="brand">
+        {{product.attributes[0].value}}
+      </h2>
+      <h1 class="name">
+        {{product.name}}
+      </h1>
+      <span class="sku">
+        SKU: {{product.partNumber}}
+      </span>
+      <div class="wrapper-rating">
+        <div class="rating">
+          <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        </div>
+        <span>(Sin calificaciones)</span>
+      </div>
+      <span class="small-description">
+        {{product.shortDescription}}
+      </span>
+      <div class="price">
+        <div class="normal-price">
+          <span>Normal</span>
+          <span>{{product.prices.formattedListPrice}}</span>
+        </div>
+        <div class="internet-price" *ngIf="product.prices.discountPercentage">
+          <span>Internet</span>
+          <span>{{product.prices.formattedOfferPrice}}</span>
+        </div>
+        <div class="cart-price" *ngIf="product.prices.formattedCardPrice">
+          <span>Tarjeta Ripley</span>
+          <span>{{product.prices.formattedCardPrice}}</span>
+        </div>
+      </div>
+      <div class="price-detail">
+        <div class="discount" *ngIf="product.prices.discountPercentage">
+          <span>Descuento</span>
+          <div class="box">
+            <div></div>
+            <div>-{{product.prices.discountPercentage}} %</div>
+          </div>
+        </div>
+        <div class="points">
+          <span>Acumulas</span>
+          <span>{{product.prices.ripleyPuntos}} RipleyPuntos GO</span>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="action-quantity">
+          <button (click)="changeQuantity(-1)">-</button>
+          <div>{{quantity}}</div>
+          <button (click)="changeQuantity(+1)">+</button>
+        </div>
+        <button class="add-shopping-card">
+          Agregar a la bolsa
+        </button>
+      </div>
+      <div class="shipping">
+        <div>
+          <i class="product-shipping-icon">
+            <svg role="img" class="svg-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#despacho_dd">
+                <svg id="despacho_dd" viewBox="0 0 25.21 21.19">
+                  <path
+                    d="M21.66 7.64a.83.83 0 01-.83.83l-2.25-2a.83.83 0 01-.83-.83V.87a.83.83 0 01.83-.83h2.25a.83.83 0 01.83.83v6.8z">
+                  </path>
+                  <path
+                    d="M23.39 11.2a1.102 1.102 0 001.46-1.65C24.7 9.4 14.42.87 14.29.74a2.39 2.39 0 00-3.52.07C10.7.88.32 9.58.32 9.58a1.025 1.025 0 001.27 1.61l9.61-7.81a2.31 2.31 0 012.85 0l9.34 7.81z">
+                  </path>
+                  <path
+                    d="M11.2 6.1l-6.68 5.35v8.14a1.61 1.61 0 001.61 1.61h1.38v-6.76a1.61 1.61 0 011.61-1.61h2a1.61 1.61 0 011.61 1.61v6.76h6.35a1.61 1.61 0 001.61-1.61v-8.08c-2.36-2.08-5.52-4.55-6.57-5.4a2.35 2.35 0 00-2.92-.01z">
+                  </path>
+                </svg>
+              </use>
+            </svg>
+          </i>
+          <div>
+            Despacho a domicilio
+            <span>{{product.shipping.dDomicilio ? 'Disponible' : 'No disponible' }}</span>
+          </div>
+        </div>
+        <div>
+          <i class="product-shipping-icon">
+            <svg role="img" class="svg-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#despacho_rt">
+                <svg id="despacho_rt" viewBox="0 0 29.82 26.08">
+                  <path
+                    d="M22.36 22.36H7.45v-6.48a5.55 5.55 0 01-3.73 1.45v8.75h22.37v-8.75a5.55 5.55 0 01-3.73-1.45zM26.09 0H3.73L0 11.74a3.73 3.73 0 007.45 0 3.73 3.73 0 007.45 0 3.73 3.73 0 007.45 0 3.73 3.73 0 007.45 0zm-6.84 9.84c-.08.08-.22.13-.76.13-1.85.03-2.76-1.55-3.49-2.8l-.24-.41a1 1 0 00-.58-.48h-.07a.33.33 0 01-.27-.32.25.25 0 01.26-.25h.09a1.54 1.54 0 00.32 0A1.62 1.62 0 0016.17 4 2 2 0 0014 2.09c-.43 0-.46 0-.46.19V8c0 1 .42 1 .76 1.1.18 0 .42.07.42.32s-.33.29-.48.29h-2.46a.31.31 0 01-.33-.29c0-.21.19-.27.33-.31s.55-.17.55-.9V2.78c0-.73-.26-.75-.52-.76s-.41 0-.41-.31a.3.3 0 01.3-.32h2.46c2 0 3.18.87 3.18 2.33A2.65 2.65 0 0115.83 6l-.1.06a11.54 11.54 0 001.68 2.32 3.39 3.39 0 001.72 1.06.23.23 0 01.19.22.22.22 0 01-.07.18z">
+                  </path>
+                </svg>
+              </use>
+            </svg>
+          </i>
+          <div>
+            Retiro en tienda
+            <span>{{product.shipping.rTienda ? 'Disponible' : 'No disponible' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="details">
+    <div class="tab">
+      <input id="tab-1" type="checkbox" name="tab">
+      <label for="tab-1">Descripción</label>
+      <div class="tab-content" [innerHTML]="product.longDescription"></div>
+    </div>
+    <div class="tab">
+      <input id="tab-2" type="checkbox" name="tab">
+      <label for="tab-2">Especificaciones</label>
+      <div class="tab-content">
+        <div class="att-list">
+          <div *ngFor="let attr of product.attributes; let i = index" class="att-item">
+            <div>{{attr.name}}</div>
+            <div>{{attr.value}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

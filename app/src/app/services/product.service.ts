@@ -22,25 +22,26 @@ export class ProductService {
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
+      console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.productsUrl}/products`, httpOptions).pipe(
-      tap(_ => console.log("fetched products")),
-      catchError(this.handleError("getProducts", []))
-    );
+    return this.http
+      .get<Product[]>(`${this.productsUrl}/products`, httpOptions)
+      .pipe(
+        tap(_ => console.log("fetched products")),
+        catchError(this.handleError("getProducts", []))
+      );
   }
 
   getProduct(partNumber: String): Observable<Product> {
     return this.http
       .get<Product>(`${this.productsUrl}/product/${partNumber}`, httpOptions)
       .pipe(
-        tap(_ => console.log("fetched products")),
-        catchError(this.handleError<Product>("getProducts", new Product()))
+        tap(_ => console.log("fetched product")),
+        catchError(this.handleError<Product>("getProduct", new Product()))
       );
   }
-
-  private;
 }
