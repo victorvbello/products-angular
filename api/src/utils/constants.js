@@ -5,6 +5,7 @@ export const EXTERNAL_API_PATH = 'https://simple.ripley.cl/api/v2/';
 export const REDIS_CONFIG = {
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD,
 };
 export const FIREBASE_AUTH = {
   apiKey: process.env.FIREBASE_API_KEY,

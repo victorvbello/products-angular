@@ -10,8 +10,7 @@
       </div>
     </div>
     <div class="images">
-      <swiper class="swiper-container" [config]="config" [(index)]="index" [disabled]="disabled"
-        (indexChange)="onIndexChange($event)">
+      <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
         <div *ngFor="let images of product.images">
           <img src="https:{{images}}" alt="" class="swiper-images">
         </div>

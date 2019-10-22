@@ -8,7 +8,12 @@ export const getClient = async () => {
     try {
       client.on('connect', () => {
         Info('Redis - client', 'connected');
-        resolve(client);
+        client.auth(REDIS_CONFIG.password, (err, _reply) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(client);
+        });
       });
       client.on('error', reject);
     } catch (error) {

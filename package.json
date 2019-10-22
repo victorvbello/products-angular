@@ -1,0 +1,23 @@
+{
+  "name": "angular-product-test",
+  "version": "1.0.0",
+  "description": "product-app",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:api": "cd api && yarn start",
+    "build:app": "cd app && yarn build",
+    "start:all": "yarn build:app && yarn start:api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorvbello/products-angular.git"
+  },
+  "author": "Victor Bello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorvbello/products-angular/issues"
+  },
+  "homepage": "https://github.com/victorvbello/products-angular#readme"
+}
