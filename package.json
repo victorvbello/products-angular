@@ -11,7 +11,7 @@
     "install:app": "cd app && yarn",
     "install:all": "yarn install:api && yarn install:app",
     "start:api": "cd api && yarn start",
-    "build:app": "cd app && yarn build",
+    "build:app": "cd app && yarn build && yarn heroku:start",
     "start:all": "yarn build:app && yarn start:api",
     "start": "yarn install:all && yarn start:all"
   },
