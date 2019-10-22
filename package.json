@@ -11,9 +11,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install:all": "cd /app/app && npm install && cd /app/api && npm install",
-    "start": "npm run install:all && npm run heroku:start:api"
+    "build:all": "cd /app/app && npm run heroku:build && cd /app/api && npm run build",
+    "start": "npm run install:all && npm run build:all && cd /app/api && npm run heroku:start:api"
   },
-  "heroku-postbuild": "cd /app/app && npm run heroku:build && cd /app/api && npm run build",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/victorvbello/products-angular.git"
