@@ -10,9 +10,8 @@
   "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install:all": "cd api && npm install && cd ../api && npm install",
-    "start:api": "npm run heroku:start:api",
-    "start": "npm run install:all && npm run start:api"
+    "install:all": "cd app && npm install && cd ../api && npm install",
+    "start": "npm run install:all && npm run heroku:start:api"
   },
   "heroku-postbuild": "cd app && npm run heroku:build && cd ../api && npm run build",
   "repository": {
